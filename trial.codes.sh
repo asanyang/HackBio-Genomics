@@ -52,19 +52,20 @@ DATASETS=(
 "Chara"
 )
 
+#Create directories for your repaired reads
+mkdir repaired
+#Create directory for alignment map
+mkdir alignment_map
+
 #Build the reference genome index with bwa index. (GRCh38 was used here)
 bwa index references/GRCH38ref_genome.fna
 
 #Correct for disordered reads with repair.sh
-#Create directories for your repaired reads
-mkdir repaired
 
 for DATASET in "${DATASETS[@]}"; do 
 repair.sh in1="output/${DATASET}_R1.fastq.gz" in2="output/${DATASET}_R2.fastq.gz" out1="repaired/${DATASET}_R2_rep.fastq.gz" out2="repaired/${DATASET}_R2_rep.fastq.gz" outsingle="repaired/${DATASET}_single.fq"
 
 #Perform alignment using bwa mem and compress alignment output to a bam file using SAMTOOLS 
-#Create directory for alignment map
-mkdir alignment_map
 
 bwa mem -t 1 \
 references/ref_genome.fasta \
