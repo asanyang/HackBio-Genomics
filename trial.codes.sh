@@ -62,19 +62,7 @@ bwa index references/GRCH38ref_genome.fna
 
 #Correct for disordered reads with repair.sh
 
-for DATASET in "${DATASETS[@]}"; do 
-repair.sh in1="output/${DATASET}_R1.fastq.gz" in2="output/${DATASET}_R2.fastq.gz" out1="repaired/${DATASET}_R2_rep.fastq.gz" out2="repaired/${DATASET}_R2_rep.fastq.gz" outsingle="repaired/${DATASET}_single.fq"
 
-#Perform alignment using bwa mem and compress alignment output to a bam file using SAMTOOLS 
-
-bwa mem -t 1 \
-references/ref_genome.fasta \
-"repaired/${DATASET}_R1_rep.fastq.gz" "repaired/${DATASET}_R2_rep.fastq.gz" \
-| samtools view -b \
-> "alignment_map/${DATASET}.bam"
-done 
-
-#Using SAMTOOLS to sort the bam files
 
 
 
