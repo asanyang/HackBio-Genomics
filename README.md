@@ -20,4 +20,4 @@ The program was structured into 5 stages
 -Stage 3 was focused on working in teams to solve interesting bioinformatics tasks.
 -Stage 4 was dedicated finalizing participants' project. 
 
-A detailed report (including technical language) of the project was published on medium.
+A detailed report (including technical language) of the project will be published on medium.
