@@ -146,3 +146,4 @@ samtools tview results/bam/SLGFSK-N_231335.aligned.sorted.bam (path to ref genom
 #A . indicates a match to the reference sequence, so we can see that the consensus from our sample matches the reference in most locations. If that is not the case, probably reconsider choice of reference.
 #Below the horizontal line, all of the reads in the sample aligned with the reference genome are shown. Only positions where the called base differs from the reference are shown.
 
+done
