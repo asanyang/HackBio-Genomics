@@ -91,16 +91,16 @@ conda install -c bioconda bbmap
 
 samtools view -S -b map_output/sam/SLGFSK-N_231335.aligned.sam > map_output/bam/SLGFSK-N_231335.aligned.bam
 samtools view -S -b map_output/sam/SLGFSK-T_231336.aligned.sam > map_output/bam/SLGFSK-T_231336.aligned.bam
-or 
-samtools view -S -b SLGFSK-N_231335.sam > SLGFSK-N_231335.bam
-samtools view -S -b SLGFSK-T_231336.sam > SLGFSK-T_231336.bam
+#or 
+#samtools view -S -b SLGFSK-N_231335.sam > SLGFSK-N_231335.bam
+#samtools view -S -b SLGFSK-T_231336.sam > SLGFSK-T_231336.bam
 
 #sort the bam files by coordinates
 samtools sort -o map_output/bam/SLGFSK-N_231335.aligned.sorted.bam map_output/bam/SLGFSK-N_231335.aligned.bam
 samtools sort -o map_output/bam/SLGFSK-N_231335.aligned.sorted.bam map_output/bam/SLGFSK-N_231335.aligned.bam
-or
-samtools sort SLGFSK-N_231335.bam -o SLGFSK-N_231335.sorted.bam
-samtools sort SLGFSK-T_231336.bam -o SLGFSK-T_231336.sorted.bam
+#or use code below
+#samtools sort SLGFSK-N_231335.bam -o SLGFSK-N_231335.sorted.bam
+#samtools sort SLGFSK-T_231336.bam -o SLGFSK-T_231336.sorted.bam
 
 #View statistics of the sorted bam file
 #samtools flagstat <bam file>
@@ -115,28 +115,28 @@ bcftools mpileup -O b -o results/bcf/ SLGFSK-N_231335_raw.bcf -f ../reference/hg
 bcftools mpileup -O b -o results/bcf/ SLGFSK-N_231336_raw.bcf -f ../reference/hg19.chr5_12_17.fa map_output/bam/SLGFSK-T_231336.aligned.sorted.bam
 
 #Step 2: Detect the single nucleotide variants (SNVs)
-bcftools call --ploidy 1 -m -v -o results/vcf/SLGFSK-N_2331335_variants.vcf results/bcf/SLGFSK-N_231335_raw.bcf
-bcftools call --ploidy 1 -m -v -o results/vcf/SLGFSK-N_2331336_variants.vcf results/bcf/SLGFSK-N_231336_raw.bcf
+bcftools call --ploidy 1 -m -v -o results/vcf/SLGFSK-N_231335_variants.vcf results/bcf/SLGFSK-N_231335_raw.bcf
+bcftools call --ploidy 1 -m -v -o results/vcf/SLGFSK-N_231336_variants.vcf results/bcf/SLGFSK-N_231336_raw.bcf
 ls -lh results/vcf/
 ls -lh results/bcf/
 
 #Step 3: Filter and report the SNV variants in variant calling format (VCF)
-vcfutils.pl varFilter results/vcf/SLGFSK-N_2331335_variants.vcf > results/vcf/SLGFSK-N_2331335_final_variants.vcf
-vcfutils.pl varFilter results/vcf/SLGFSK-N_2331336_variants.vcf > results/vcf/SLGFSK-N_2331336_final_variants.vcf
+vcfutils.pl varFilter results/vcf/SLGFSK-N_231335_variants.vcf > results/vcf/SLGFSK-N_231335_final_variants.vcf
+vcfutils.pl varFilter results/vcf/SLGFSK-N_231336_variants.vcf > results/vcf/SLGFSK-N_231336_final_variants.vcf
 
 #Explore the VCF format
-less -S results/SLGFSK-N_2331335_final_variants.vcf
-less -S results/SLGFSK-N_2331336_final_variants.vcf
+less -S results/SLGFSK-N_231335_final_variants.vcf
+less -S results/SLGFSK-N_231336_final_variants.vcf
 
 #Assess how many variants are in the vcf file
-grep -v "#" results/vcf/SLGFSK-N_2331335_final_variants.vcf | wc -l
+grep -v "#" results/vcf/SLGFSK-N_231335_final_variants.vcf | wc -l
 #Output is the number of variants in the file
 
 #Assess the alignment (Visualization)
 
 #In order to visualize the alignment files, first index the BAM file using samtools
-samtools index results/bam/SLGFSK-N_2331335.aligned.sorted.bam
-samtools index results/bam/SLGFSK-N_2331336.aligned.sorted.bam
+samtools index results/bam/SLGFSK-N_231335.aligned.sorted.bam
+samtools index results/bam/SLGFSK-N_231336.aligned.sorted.bam
 
 #In order to visualize our mapped reads, we can use tview (text alignment viewer)
 samtools tview results/bam/SLGFSK-N_231335.aligned.sorted.bam (path to ref genome ..reference/hg19.chr5_12_17.fa)
