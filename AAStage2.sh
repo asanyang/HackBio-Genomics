@@ -139,7 +139,7 @@ samtools index results/bam/SLGFSK-N_231335.aligned.sorted.bam
 samtools index results/bam/SLGFSK-N_231336.aligned.sorted.bam
 
 #In order to visualize our mapped reads, we can use tview (text alignment viewer)
-samtools tview results/bam/SLGFSK-N_231335.aligned.sorted.bam (path to ref genome ..reference/hg19.chr5_12_17.fa)
+samtools tview results/bam/SLGFSK-N_231335.aligned.sorted.bam ../reference/hg19.chr5_12_17.fa
 
 #Sidenote
 #The first line of the resulting output shows the genome coordinates in the reference genome. The second line shows the reference genome sequence. The third line shows the consensus sequence determined from the sequence reads.
